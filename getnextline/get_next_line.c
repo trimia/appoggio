@@ -6,50 +6,40 @@
 /*   By: trimia <trimia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:56:17 by trimia            #+#    #+#             */
-/*   Updated: 2022/05/20 00:40:38 by trimia           ###   ########.fr       */
+/*   Updated: 2022/05/20 19:24:02 by trimia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-int	newline(char *str,int i)
-{
-	int j;
-
-	j = -1;
-	while (j < i)
-		if(str[++j]=='\n')
-			return (1);
-	return (0);
-}
+#define BUFFER_SIZE 7
 
 char	*get_next_line(int fd)
 {
 	int			i;
+	int			j;
 	char 		*buffer;
 	static char	*nline = NULL;
 	char		*temp;
 
-	i = 1;
-	while( i != 0)
+	buffer =(char *) malloc(BUFFER_SIZE + 1);
+	while(ft_find(nline))
 	{
-		buffer = malloc(sizeof(BUFFER_SIZE));
 		i = read(fd, buffer, BUFFER_SIZE);
-		buffer[i]=0;
-		if (newline(buffer, i))
-		{
-			nline = ft_strjoin(nline,buffer);
-			break;
-		}
+		buffer[i] = 0;
+		nline = ft_strjoin(nline,buffer);
 	}
-
-	strlcpy(nline,temp);
-	
-
-	nline = ft_substr(nline,start,len)
+	free (buffer);
+	i = 0;
+	while (nline[i] != '\n')
+		i++;
+	temp = (char *)ft_calloc(i, sizeof(char));
+	ft_strlcpy(temp, nline, i + 2);
+	nline = ft_substr(nline, i + 1 , (ft_strlen(nline) - i));
 	return(temp);
 }
 
 #include <fcntl.h>
+#include <stdio.h>
 
 int main ()
 {
@@ -57,13 +47,22 @@ int main ()
 	char *cha;
 	// fd = open("out_gnl_4.txt", O_RDONLY);
 	fd = open("1-brouette.txt", O_RDONLY);
-
-	// while(fd !=0)
-	while ((cha = get_next_line(fd)))
-	{
-		printf("%s", cha);
-		free(cha);
-	}
+	printf("%s",get_next_line(fd));
+	// printf("%s",get_next_line(fd));
+	// printf("%s",get_next_line(fd));
+	// 	printf("%s",get_next_line(fd));
+	// 		printf("%s",get_next_line(fd));
+	// 			printf("%s",get_next_line(fd));
+	// 				printf("%s",get_next_line(fd));
+	// 					printf("%s",get_next_line(fd));
+	// 						printf("%s",get_next_line(fd));
+	// 							printf("%s",get_next_line(fd));
+	// 								printf("%s",get_next_line(fd));
+	// while ((cha = get_next_line(fd)))
+	// {
+	// 	printf("%s", cha);
+	// 	free(cha);
+	// }
 	
 }
 

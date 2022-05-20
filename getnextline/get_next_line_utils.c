@@ -6,7 +6,7 @@
 /*   By: trimia <trimia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:30:39 by trimia            #+#    #+#             */
-/*   Updated: 2022/05/20 19:33:43 by trimia           ###   ########.fr       */
+/*   Updated: 2022/05/20 19:40:54 by mmariani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ size_t	ft_strlcpy(char *str, const char *src, size_t size)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, int len)
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
 	int		dim;
